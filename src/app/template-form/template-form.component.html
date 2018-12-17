@@ -1,0 +1,29 @@
+<div class="col-6">
+  <form>
+      <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input required minlength="4" type="text" ngModel id="firstname" class="form-control" #firstName="ngModel" name="firstName" placeholder="First Name">
+          <div class="errors" *ngIf="firstName.errors">
+                  <span class="alert alert-danger" *ngIf="firstName.errors.required">First Name is required.</span>
+                  <span class="alert alert-danger" *ngIf="firstName.errors.minlength">First Name should be {{firstName.errors.requiredLength}} long.</span>
+                  <span class="alert alert-danger" *ngIf="firstName.errors.maxlength">First Name should be {{firstName.errors.requiredLength}} long.</span>
+          </div>
+      </div>
+      <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input requir ed minlength="4" maxlength="8" type="text" id="last-name" ngModel #lastName="ngModel" class="form-control" name="lastName" placeholder="Last Name" (change)="onSubmit( lastName )">
+              <div class="errors" *ngIf="lastName.errors">
+                  <span class="alert alert-danger" *ngIf="lastName.errors.required">Last Name is required.</span>
+                  <span class="alert alert-danger" *ngIf="lastName.errors.minlength">Last Name should be {{lastName.errors.requiredLength}} long.</span>
+                  <span class="alert alert-danger" *ngIf="lastName.errors.maxlength">Last Name should be {{lastName.errors.requiredLength}} long.</span>
+              </div>
+      </div>
+      <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" ngModel #email class="form-control" name="email" placeholder="email@domain.com">
+      </div>
+      <div class="form-group">
+          <button class="bn btn-primary">Submit</button>
+      </div>
+  </form>
+</div>
