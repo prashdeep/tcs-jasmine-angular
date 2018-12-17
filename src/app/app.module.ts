@@ -9,6 +9,9 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { ContactComponent } from './contact/contact.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import {NgRedux, NgReduxModule} from 'ng2-redux'; 
+import { AppStore, rootReducer } from './AppStore';
+import { ReduxDemoComponent } from './redux-demo/redux-demo.component';
 
 
 
@@ -19,12 +22,14 @@ import { TemplateFormComponent } from './template-form/template-form.component';
     HomeComponent,
     SearchComponent,
     ContactComponent,
-    TemplateFormComponent
+    TemplateFormComponent,
+    ReduxDemoComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgReduxModule,
     RouterModule.forRoot([
       {
         path:'',
@@ -47,9 +52,19 @@ import { TemplateFormComponent } from './template-form/template-form.component';
       {
         path:'register',
         component:TemplateFormComponent
+      },
+      {
+        path:'redux',
+        component:ReduxDemoComponent
       }
+ 
     ])
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor( ngRedux:NgRedux<AppStore> ){
+    ngRedux.configureStore(rootReducer, {counter: 0});
+  }
+}
+
