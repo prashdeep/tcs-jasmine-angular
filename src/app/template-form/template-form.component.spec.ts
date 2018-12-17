@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateFormComponent } from './template-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,NgForm } from '@angular/forms';
 
 describe('TemplateFormComponent', () => {
   let component: TemplateFormComponent;
   let fixture: ComponentFixture<TemplateFormComponent>;
-
+  let form:NgForm;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TemplateFormComponent ],
@@ -18,6 +18,7 @@ describe('TemplateFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TemplateFormComponent);
     component = fixture.componentInstance;
+    form = component.ngForm;
     fixture.detectChanges();
   });
 
@@ -36,10 +37,11 @@ describe('TemplateFormComponent', () => {
   it('should have first name error',()=>{
     const fixture = TestBed.createComponent(TemplateFormComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    compiled.querySelector('#firstname').value='';
-    fixture.detectChanges();
-    console.log(compiled.querySelectorAll(".errors"));
+    
+    fixture.whenStable().then(()=>{
+      form.controls['firstName'].setValue('1111');
+      console.log(form.controls['firstName']);
+    });
   })
 
 });

