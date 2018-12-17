@@ -7,6 +7,9 @@ describe('TemplateFormComponent', () => {
   let component: TemplateFormComponent;
   let fixture: ComponentFixture<TemplateFormComponent>;
   let form:NgForm;
+  //spyOn(object,'method').and,calllFake(()=>{
+
+  //})
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TemplateFormComponent ],
@@ -41,6 +44,7 @@ describe('TemplateFormComponent', () => {
     fixture.whenStable().then(()=>{
       form.controls['firstName'].setValue('1111');
       console.log(form.controls['firstName']);
+      
     });
   })
 
