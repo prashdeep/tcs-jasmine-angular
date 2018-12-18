@@ -12,6 +12,11 @@ import { TemplateFormComponent } from './template-form/template-form.component';
 import {NgRedux, NgReduxModule} from 'ng2-redux'; 
 import { AppStore, rootReducer } from './AppStore';
 import { ReduxDemoComponent } from './redux-demo/redux-demo.component';
+import { PrimeComponent } from './prime/prime.component';
+import { EvenComponent } from './even/even.component';
+import { OddComponent } from './odd/odd.component';
+import { NumbergeneratorService } from './numbergenerator.service';
+import { ParentComponent } from './parent/parent.component';
 
 
 
@@ -23,7 +28,11 @@ import { ReduxDemoComponent } from './redux-demo/redux-demo.component';
     SearchComponent,
     ContactComponent,
     TemplateFormComponent,
-    ReduxDemoComponent
+    ReduxDemoComponent,
+    PrimeComponent,
+    EvenComponent,
+    OddComponent,
+    ParentComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +65,14 @@ import { ReduxDemoComponent } from './redux-demo/redux-demo.component';
       {
         path:'redux',
         component:ReduxDemoComponent
+      },
+      {
+        path:'emit',
+        component:ParentComponent
       }
- 
     ])
   ],
+  providers:[NumbergeneratorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
