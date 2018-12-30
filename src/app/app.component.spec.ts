@@ -1,11 +1,18 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, tick, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { ContactComponent } from './contact/contact.component';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 describe('AppComponent', () => {
+  let location:Location;
+  let router:Router;
+  let fixture;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -20,7 +27,6 @@ describe('AppComponent', () => {
           redirectTo:'home',
           pathMatch:'full'
         },
-  
         {
           path:'home',
           component:HomeComponent
@@ -35,33 +41,15 @@ describe('AppComponent', () => {
         }
      ])]
     }).compileComponents();
-  }));
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-    expect(app.title).toEqual('app');
-  });
-
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+    fixture = TestBed.createComponent(AppComponent);
+    router.initialNavigation();
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  }));
-
-  it('should route to home component ',async(()=>{
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#home').textContent).toBe('Home');
-    expect(compiled.querySelector('#search').textContent).toBe('Search');
-  }));
-
+  it('navigates to "" redirects to "/home', fakeAsync(()=>{
+    router.navigate(['']);
+    tick();
+    expect(location.path()).toBe('/home');
+  }))
 });
