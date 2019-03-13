@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+expect(true).toBe(true)
+expect(true).not.toBe(true)
+expect(a).toEqual(bar)
+expect(message).toMatch(/bar/)
+expect(message).toMatch('bar')
+expect(a.foo).toBeDefined()
+expect(a.foo).toBeUndefined()
+expect(a.foo).toBeNull()
+expect(a.foo).toBeTruthy()
+expect(a.foo).toBeFalsy()
+expect(message).toContain('hello')
+expect(pi).toBeGreaterThan(3)
+expect(pi).toBeLessThan(4)
+expect(pi).toBeCloseTo(3.1415, 0.1)
+expect(func).toThrow()
